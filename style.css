@@ -310,3 +310,80 @@ transform:translateY(0);
     transform: translateY(0);
     pointer-events: auto; 
 }
+
+
+
+
+@media (max-width: 768px) {
+    
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: visible;
+    }
+
+    .hero-meta {
+        position: relative; 
+        top: 0;
+        left: 0;
+        margin-top: 20px;
+        flex-wrap: wrap; 
+        gap: 20px;
+    }
+
+    .meta-item {
+        flex: 1 1 40%; 
+    }
+
+    .hero-image {
+        position: relative; 
+        width: 100%;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-image img {
+        width: 100%; 
+        margin-top: 0;
+    }
+
+    .hero-links {
+        position: relative; 
+        right: auto;
+        top: auto;
+        transform: none; 
+        
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 50px 0 30px 0; 
+        gap: 15px;
+    }
+
+    .social {
+        transition: transform 0.2s ease;
+    }
+    
+    .social:hover {
+        width: 45px; 
+        transform: scale(1.1); 
+    }
+
+    .social:hover .text {
+        opacity: 0; 
+    }
+
+    .hero-links .social {
+        transform: translateY(30px); 
+    }
+    
+    .hero-links.show .social {
+        transform: translateY(0);
+    }
+}
