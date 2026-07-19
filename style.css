@@ -6,6 +6,10 @@
 
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 
 
 body {
@@ -295,7 +299,6 @@ body {
 
     .hero {
         height: auto;
-        min-height: 100vh;
         padding: 20px; 
         display: flex;
         flex-direction: column;
@@ -364,42 +367,48 @@ body {
 
 
 
+
+/* --- About --- */
 .about-section {
-  position: relative; 
-  min-height: 100vh;
-  padding: 80px 40px;
-  overflow: hidden;
+    position: relative;
+    min-height: 140vh; 
+    padding: 80px 40px;
 }
 
-
 .about-bg-signature {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30%;
+transform: translateY(-50%);
+  margin: 0 auto;
   width: 80%;
   max-width: 800px;
   z-index: 1; 
   pointer-events: none; 
+  display: block;
+    height: 0; 
+    overflow: visible;
 }
+
 
 #handwritten-name {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
-/* --- animation --- */
 .stroke-line {
-  stroke: rgba(30, 30, 30, 0.1); 
-  stroke-width: 4px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+    stroke: rgba(30, 30, 30, 0.08);
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.3; 
+    transition: opacity 0.5s ease;
 }
 
 #handwritten-name.active .stroke-line {
-  animation: writeEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 1;
+    stroke: rgba(30, 30, 30, 0.15);
+    animation: writeEffect 1s ease forwards;
 }
 
 @keyframes writeEffect {
@@ -410,13 +419,6 @@ body {
   }
 }
 
-
-/* --- About --- */
-.about-section {
-    position: relative;
-    min-height: 140vh; 
-    padding: 80px 40px;
-}
 
 .about-content.layout {
     position: relative;
@@ -440,36 +442,7 @@ body {
 
 }
 
-.about-bg-signature {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 700px;
-    z-index: 1;
-    pointer-events: none;
-}
 
-#handwritten-name {
-    width: 100%;
-    height: auto;
-}
-
-.stroke-line {
-    stroke: rgba(30, 30, 30, 0.08);
-    stroke-width: 3px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    opacity: 0.3; 
-    transition: opacity 0.5s ease;
-}
-
-#handwritten-name.active .stroke-line {
-    opacity: 1;
-    stroke: rgba(30, 30, 30, 0.15);
-    animation: writeEffect 1s ease forwards;
-}
 
 .mag-block {
     position: absolute;
@@ -533,7 +506,7 @@ body {
     position: absolute; 
 }
 .interests.a {
-    width: 40%;
+    width: 60%;
     left: 26vw; 
     top: 55vh; 
     transform: rotate(-1.5deg);
@@ -550,15 +523,6 @@ body {
     
 }
 
-.interests.c {
-    width: 25%;
-    left: 60vw; 
-    top: 50vh;
-    transform: rotate(-0.5deg);
-    z-index: 2; 
-    background-color: rgba(189, 189, 189, 0.1);;
-}
-
 
 .mag-text ul {
     list-style: none;
@@ -567,11 +531,12 @@ body {
 
 .mag-text li {
     margin-bottom: 12px;
-    color: #656565;
+    color: #879b9c;
 }
 .mag-text p{
     padding-left: 4%;
     padding-top: 30px;
+    color: #676767;
 }
 
 .mag-text a {
@@ -589,39 +554,65 @@ body {
     border-radius: 4px;
 }
 
+
+
 @media (max-width: 1083px) and (min-width: 769px) {
     .about-section {
-        min-height: auto;
-        padding: 60px 30px;
+        min-height: 140vh; 
+        padding: 60px 40px;
     }
 
-    /* 启用网格布局，分为左右两列 */
     .about-content.layout {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* 左右等宽两列 */
-        gap: 30px;
+        grid-template-columns: 2fr 1fr; 
+        gap: 35px 25px; 
+        align-items: start;
     }
 
-    /* 让旋转回归正常，取消绝对定位 */
     .mag-block {
         position: relative !important;
         top: auto !important;
         left: auto !important;
         right: auto !important;
-        width: 100% !important;
-        height: auto !important;
-        transform: none !important;
+        width: 100% !important; 
+        max-width: max-content; 
+        height: auto !important; 
+        padding: 28px;
+        box-sizing: border-box;
     }
 
-    .interests.a { transform: rotate(-1deg) !important; }
-    .interests.b { transform: translateY(15px) rotate(1deg) !important; }
-    .interests.c { transform: rotate(-0.5deg) !important; }
+    .profile {
+        transform: rotate(-0.5deg);
+        margin-left: -10px; 
+    }
+
+    .skills {
+        transform: rotate(1deg);
+        margin-top: 15px; 
+        margin-left: 10px;
+    }
+
+    .interests.a { 
+        transform: rotate(-1.5deg) !important; 
+        margin-top: -10px;
+    }
+    
+    .interests.b { 
+        transform: rotate(1deg) !important; 
+        margin-left: 15px; 
+    }
+
+    .interests.c { 
+        transform: rotate(-0.8deg) !important;
+        margin-top: 10px;
+    }
 
     .page-title {
-        grid-column: 1 / -1; 
+        grid-column: 2; 
+        top:410px;
         position: relative;
-        top:0;
-margin-top: 50px;
+        margin-top: 20px;
+        margin-bottom: 20px;
         left: auto;
         transform: none;
         font-size: 50px;
@@ -632,23 +623,26 @@ margin-top: 50px;
 
 @media (max-width: 768px) {
     .about-section {
-        min-height: auto;
-        padding: 60px 20px;
+        min-height: 100vh;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
     .about-content.layout {
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 30px; 
+        align-items: center; 
     }
 
     .page-title {
         position: relative;
         bottom: auto;
         right: auto;
-        font-size: 30px;
+        align-self: flex-start; 
+        font-size: 36px;
         color: #1e1e1e;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         letter-spacing: 0;
         opacity: 1;
     }
@@ -658,17 +652,23 @@ margin-top: 50px;
         top: auto !important;
         left: auto !important;
         right: auto !important;
-        width: 100% !important;
-        transform: none !important;
+        
+        width: auto !important; 
+        max-width: 100%; 
+        display: inline-block;
+        height: auto !important;
+        
         padding: 25px;
     }
-    .mag-name{
-        font-size: 20px;
-    }
-    .mag-text{
-        font-size: 12px;
-    }
 
+    .profile { transform: rotate(-0.8deg) translateX(-5px) !important; }
+    .skills { transform: rotate(0.6deg) translateX(5px) !important; }
+    .interests.a { transform: rotate(-1.2deg) translateX(-3px) !important; }
+    .interests.b { transform: rotate(0.8deg) translateX(4px) !important; }
+    .interests.c { transform: rotate(-0.5deg) translateX(-2px) !important; }
+
+    .mag-name { font-size: 22px; }
+    .mag-text { font-size: 13px; }
 
     .about-bg-signature {
         width: 80%;
@@ -676,7 +676,5 @@ margin-top: 50px;
         opacity: 0.4;
     }
     
-    .stroke-line {
-        opacity: 0.5; 
-    }
+    .stroke-line { opacity: 0.5; }
 }
