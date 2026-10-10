@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (aboutContent) aboutContent.classList.add("show");
                 if (svgElement) svgElement.classList.add("active");
             } else {
-               
                 if (aboutContent) aboutContent.classList.remove("show");
                 if (svgElement) svgElement.classList.remove("active");
             }
@@ -55,5 +54,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (aboutSection) {
         aboutObserver.observe(aboutSection);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const clickSound = document.getElementById("click-sound");
+    const muteBtn = document.getElementById("mute-btn");
+    let isMuted = false;
+
+    function playClickSound() {
+        if (isMuted || !clickSound) return;
+        
+        clickSound.currentTime = 0;
+        clickSound.play().catch(err => {
+            console.log("Audio play blocked until user gesture", err);
+        });
+    }
+
+    const clickableElements = document.querySelectorAll("a, button, .mag-block, .social");
+    
+    clickableElements.forEach(element => {
+        element.addEventListener("click", (e) => {
+            if (element.id === "mute-btn") return;
+            playClickSound();
+        });
+    });
+
+    if (muteBtn) {
+        muteBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); 
+            isMuted = !isMuted;
+            
+            if (isMuted) {
+                muteBtn.innerHTML = '<span class="icon-sound">🔇</span>';
+                muteBtn.classList.add("is-muted");
+            } else {
+                muteBtn.innerHTML = '<span class="icon-sound">🔊</span>';
+                muteBtn.classList.remove("is-muted");
+                playClickSound(); 
+            }
+        });
     }
 });
